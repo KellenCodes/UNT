@@ -1,0 +1,12 @@
+graph was size 1381x1381
+Djikstra solved in: 30.16
+Floyd-Warshall solved in: 14.58
+
+graph was size 1504x1504
+Djikstra solved in: 36.89
+Floyd-Warshall solved in: 18.75
+
+graph was size 1491x1491
+Djikstra solved in: 34.51
+Floyd-Warshall solved in: 18.28
+

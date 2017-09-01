@@ -1,0 +1,19 @@
+	(defun incr (x)   (+  x  1))
+	(defun triple  (x)  (*   x    x))
+
+
+	(defun invert (x)
+       (if (= x 0) 'infinity (* 2 x)))
+
+(defun do-double (lis)
+                  (let ((newlis nil))
+                           (dolist (item lis newlis)
+                           (setf newlis  (cons (list item item)  newlis)))))
+
+
+(defun  my-dotimes (lis)
+     (let  ((my-lis nil))
+          (dotimes  (counter  3  my-lis)
+                (setf my-lis (cons (first lis) my-lis))
+                (setf lis (rest lis)))))
+

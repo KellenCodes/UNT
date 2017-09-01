@@ -1,0 +1,12 @@
+(defun initialize ()
+	(setf first-array (make-array '(6)  :initial-contents '( java c pascal ada  java c++ )))
+	(setf second-array (make-array '(6) :initial-contents '(java c lisp fortran php ada))))
+
+(defun find-common (first-arr second-arr)
+	(setf common nil)
+	(setf count-first (- 1 (array-dimensions first-arr)))
+	(setf count-second (array-dimensions second-arr))
+	(dotimes (r count-first)
+	  (cons (find r second-arr) common)
+	    first-arr)
+)

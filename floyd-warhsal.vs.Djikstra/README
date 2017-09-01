@@ -1,0 +1,73 @@
+University of North Texas
+College of Engineering
+CSE department
+
+Algorithm Analysis
+4110.001 Spring 2017
+Term Project
+
+Student:
+
+	Michael Kellen Mills
+	michaelmills5@my.unt.edu
+
+Instructor:
+
+	Farhad Shahrokhi
+	farhad@cse.unt.edu
+
+Instructional assistants:
+
+	Sreedevi Koppula
+	sreedevikoppula@my.unt.edu
+
+	Mounika Pandhiri
+	mounikapandhiri@my.unt.edu
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+	To compile, type make:
+
+mkm0222@cse03:~/CSCE4110/p1$ make
+
+	Then, we can call the program from the command line to use separate arguments.
+
+
+	To output new graphs, pass in the argument  n  and  FILENAE
+
+mkm0222@cse03:~/CSCE4110/p1$ ./NCubdRace2017 n graphsFile
+	This comand will create 30 random graphs and put them into a file named graphs.
+
+
+	To use a set of generated graphs, pass in the argument  f  and  FILEAME  of both the input and output files
+
+mkm0222@cse03:~/CSCE4110/p1$ ./NCubedRace2017 f graphsFile resultsFile
+	This command will load in the file and run 30 tests. 
+	The system expects 30 graphs to be in the file in the same way it created them.
+	Without being given an output file, the system will not save the results to a file.
+
+	To output the resulting graphs from dijkstra and floy-warshall, include the argument   g  as the final argument.
+mkm0222@cse03:~/CSCE4110/p1$ ./NCubedRace2017 f graphsFile resultsFile g
+	This will append the results file with the resulting graphs from every input graph. 
+	The user is advised not to append already existing files with this program call.
+	
+
+	The program can be used with its own interface by passin in NO arguments.
+
+mkm0222@cse03:~/CSCE4110/p1$ ./NCubedRace2017
+	This will load the program's own interface and allow the user to generate and test graphs one at a time.
+	The results could be viewed one at a time.
+
+
+
+#define MAXGRAPHS 30 //number of graphs to generate.CAREFUL!
+#define GRAPH_SIZE_VARIANCE 950 // the random prinicpal of the graphs
+#define GRAPH_SIZE_MIN 50 //minimum size of graphs generated. not needed to test graphs
+	To change the number of graphs the program generated, the algoRACE.h header file will needto be edited. 
+	The constant for graphs number is defined as #defined MAXGRAPHS

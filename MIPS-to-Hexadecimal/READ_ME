@@ -1,0 +1,10 @@
+READ_ME
+
+Group Members: Scarlett Jones and Michael Kellen Mills
+
+File I/O Usage: Our main.cpp file opens up a file named "mips.asm" on lines 23 and in functions.cpp on line 345. Either change the name of the file opened there in the program,
+or change the name of your file to mips.asm. Our output file is called "hex.txt"
+
+Makefile Usage: Type make to compile. Type make run to run.
+
+Files included: main.cpp, functions.cpp, class.h, READ_ME, and makefile

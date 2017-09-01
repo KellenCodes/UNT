@@ -1,0 +1,16 @@
+;; Dribble of #<IO TERMINAL-STREAM> started on 2016-09-01 09:28:39.
+#<OUTPUT BUFFERED FILE-STREAM CHARACTER #P"lab1b">
+[2]> (load "lab1exercise")
+;; Loading file lab1exercise ...
+;; Loaded file lab1exercise
+T
+[3]> (my-subtract 4)
+1.4142135
+[4]> (my-second 4)
+26.414213
+[5]> (my-subtract 125)
+11.090536
+[6]> (my-second 125)
+36.090538
+[7]> (exit)
+Bye.

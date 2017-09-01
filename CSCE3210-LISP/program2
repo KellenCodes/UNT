@@ -1,0 +1,30 @@
+;; Dribble of #<IO TERMINAL-STREAM> started on 2016-09-13 09:07:26.
+#<OUTPUT BUFFERED FILE-STREAM CHARACTER #P"program2">
+[2]> (load "program2.lisp")
+;; Loading file program2.lisp ...
+;; Loaded file program2.lisp
+T
+[3]> (where-is '(Ralph Sam Waldo))
+WALDO
+[4]> (gross-recepts 112 6)
+
+*** - EVAL: undefined function GROSS-RECEPTS
+The following restarts are available:
+USE-VALUE      :R1      Input a value to be used instead of (FDEFINITION 'GROSS-RECEPTS).
+RETRY          :R2      Retry
+STORE-VALUE    :R3      Input a new value for (FDEFINITION 'GROSS-RECEPTS).
+ABORT          :R4      Abort main loop
+Break 1 [5]> (gross-receipts 112 6)
+808
+Break 1 [5]> (longer-list '(1 2 3 4) '(5 6))
+(1 2 3 4 5 6)
+Break 1 [5]> (longer-list 'a '(4 5))
+(FIRST ELEMENT IS NOT A LIST)
+Break 1 [5]> (between 4 6 13)
+T
+Break 1 [5]> (between 5 10 2)
+NIL
+Break 1 [5]> (triangle 3 4 4)
+T
+Break 1 [5]> (exit)
+Bye.

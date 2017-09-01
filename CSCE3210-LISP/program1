@@ -1,0 +1,8 @@
+;;;M. Kellen Mills
+;;;Assignment 1
+
+(defun my-average (x y z)
+	(/ (+ x y z) 3))
+
+(defun my-random (x y z)
+	(random (my-average x y z)))

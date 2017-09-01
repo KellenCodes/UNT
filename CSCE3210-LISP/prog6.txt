@@ -1,0 +1,151 @@
+;; Dribble of #<IO TERMINAL-STREAM> started on 2016-10-26 09:58:10.
+#<OUTPUT BUFFERED FILE-STREAM CHARACTER #P"prog6">
+Break 1 [3]> (initialize)
+#<FUNCTION :LAMBDA (MESSAGE)
+  (COND ((EQUAL MESSAGE 'NAME) NAME) ((EQUAL MESSAGE 'TYPE) TYPE) ((EQUAL MESSAGE 'USE) USE))>
+Break 1 [3]> (ask player 'location)
+DORMITORY
+Break 1 [3]> (ask swigger 'location)
+LIBRARY
+Break 1 [3]> (ask albert 'possessions)
+(MONEY1 ALBERT-ID)
+Break 1 [3]> (ask money1 'use)
+BUY-FOOD
+Break 1 [3]> (ask library 'neighbors)
+(COMPUTER)
+Break 1 [3]> (ask computer 'neighbors)
+(ENGLISH LIBRARY)
+Break 1 [3]> (exit)
+Bye.
+;; Dribble of #<IO TERMINAL-STREAM> started on 2016-10-28 10:07:32.
+#<OUTPUT BUFFERED FILE-STREAM CHARACTER #P"prog6.txt">
+[3]> (initialize)
+
+"homework due at midnight" 
+("now you have " 120 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" (ask player 'look-around)
+("indoors " (PLAYER BED SHOWER) "outside " (ENGLISH UNION)) 
+"homework due at midnight" 
+("now you have " 114 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(ask shower 'use)
+*** - EVAL: variable SHOWER has no value
+The following restarts are available:
+USE-VALUE      :R1      Input a value to be used instead of SHOWER.
+STORE-VALUE    :R2      Input a new value for SHOWER.
+ABORT          :R3      Abort main loop
+Break 1 [4]> (exit)
+Bye.
+;; Dribble of #<IO TERMINAL-STREAM> started on 2016-10-28 10:09:09.
+#<OUTPUT BUFFERED FILE-STREAM CHARACTER #P"prog6.txt">
+[3]> (initialize)
+
+"homework due at midnight" 
+("now you have " 120 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" (ask player 'look-around)
+("indoors " (PLAYER BED SHOWER) "outside " (ENGLISH UNION)) 
+"homework due at midnight" 
+("now you have " 114 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(ask shower 'use)
+MAKE-CLEAN 
+"homework due at midnight" 
+("now you have " 108 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(send player 'move-to 'library)
+(PLAYER " cannot move to " LIBRARY " because that is not nearby.") 
+"homework due at midnight" 
+("now you have " 102 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(send player 'move-to 'english)
+(PLAYER " is now in " ENGLISH) 
+"homework due at midnight" 
+("now you have " 96 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(ask player 'look-around)
+("indoors " (PLAYER GARBAGE LOST-DREAMS) "outside " (DORMITORY COMPUTER-LAB)) 
+"homework due at midnight" 
+("now you have " 90 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(send player 'move-to 'computer-lab)
+(PLAYER " is now in " COMPUTER-LAB) 
+"homework due at midnight" 
+("now you have " 84 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(ask player 'look-around)
+("indoors " (PLAYER MARY COMPUTER) "outside " (ENGLISH LIBRARY)) 
+"homework due at midnight" 
+("now you have " 78 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(ask player 'possessions)
+(DORM-KEY MONEY1 PLAYER-ID) 
+"homework due at midnight" 
+("now you have " 72 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(send player 'take 'computer)
+(PLAYER " now has " COMPUTER) 
+"homework due at midnight" 
+("now you have " 66 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(ask player 'possessions)
+(COMPUTER DORM-KEY MONEY1 PLAYER-ID) 
+"homework due at midnight" 
+("now you have " 60 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(send player 'move-to 'library)
+(PLAYER " is now in " LIBRARY) 
+"homework due at midnight" 
+("now you have " 54 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(ask player 'look-around)
+("indoors " (PLAYER SWIGGER JOKE-BOOK) "outside " (COMPUTER-LAB)) 
+"homework due at midnight" 
+("now you have " 48 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(ask swigger 'possessions)
+(KNOWLEDGE) 
+"homework due at midnight" 
+("now you have " 42 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(ask player 'submit)
+"you have turned in your homework! You have an A!" 
+("type quit to quit game") 
+"homework due at midnight" 
+("now you have " 36 " minutes until midnight") 
+"type (send player '<command> '<item/action>) commands: move-to, take, drop. item: (ask player '<possessions/look-around>)" 
+"type (ask player '<action/question>) actions: look-around, submit. questions: name, location, possessions" 
+"" 
+(quit)
+Bye.

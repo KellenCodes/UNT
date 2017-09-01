@@ -1,0 +1,10 @@
+;M Kellen Mills 	michaelmills5@my.unt.edu
+;symbolic processing with Dr. Swigger
+
+(defun make-person (name  job  age   company)
+	(lambda (message)
+	      (cond ((equal message 'name) name)
+		        ((equal message 'job) job)
+                        ((equal message 'age) age)
+	  	       ((equal message 'work-for)company))))
+

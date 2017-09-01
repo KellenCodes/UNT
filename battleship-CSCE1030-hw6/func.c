@@ -1,0 +1,289 @@
+#include "battle.h"
+
+void battle(char *board[SQUARE], char *game[SQUARE], int shot)
+{
+	/*For the rest of this function, x is the row, y is the column*/
+	Play one;
+	int i, x, y;
+	char badCoord[] = "Cannot lock onto target.\nCoordinates must be given as one alpha character and one or two numeric characters.\n A1, A10, a10, a1 etc.\n";
+	char c;
+	for( i = 0; i < SHIPS; i++)	/*This for loop will initiailize counters for each ship depending on their size. I've left all the logic dynamic so that I can have 20 ships with size 15 if I wanted to.*/
+	{
+		one.realShip[i] = (LARGE - i);
+		if( (LARGE - i) < SMALL)
+		{
+			one.realShip[i] = SMALL;	/*The smallest ship allowed is defined by SMALL in the header file. This check is here to make sure nothing can be smaller than what the programmer wants.*/
+		}
+	}		/*Now that all the counters for the ship's hit points have been set, we can play the game.*/
+	one.aircraftShip = 0;
+	one.battleShip = 0;
+	while(shot != 0)
+	{
+		prn_board(game);
+		prn_board(board);
+		printf("We have %d missiles left. Where shall we fire next?\n> ", shot);
+
+		scanf("%c %d", &one.yCo, &one.xCo);
+		if(one.yCo >= 'a' && one.yCo <= 'z')
+                {
+                        one.yCo -= 32;		/*If it's lower case make it upper case.*/
+                }
+
+		x = one.xCo;
+		x -= 1;
+		y = (one.yCo - 'A');
+
+		switch(board[y][x])
+		{
+			case 'A':
+			{
+				one.aircraftShip++;
+				board[y][x] = 'X';
+				game[y][x] = 'X';
+				if(one.aircraftShip < 5)
+					printf("You hit the zombies aircraft carrier!");
+				else
+					printf("You sank the zombies aircraft carrier!");
+				break;
+			}
+			case 'B':
+			{
+				one.battleShip++;
+				board[y][x] = 'X';
+				game[y][x] = 'X';
+				if(one.battleShip < 4)
+					printf("You hit the zombies's battleship!");
+				else
+					printf("You sank the zombie's battleship!");
+				break;
+			}
+			case 'X':
+			{
+				printf("You already hit that spot!");
+			}
+			case 'O':
+			{
+				printf("A wasted shot!\n");
+				break;
+			}
+			case ' ':
+			{
+				board[y][x] = 'O';
+				game[y][x] = 'O';
+				printf("Miss...");
+			}
+		}
+
+		shot--;
+/*		if((one.xCo < 0 || one.xCo > SQUARE) || ((one.yCo - 'A') < 0 || (one.yCo - 'A') > SQUARE) || (one.yCo == '\0' || one.xCo == -1))
+		{
+			printf("%s", badCoord);
+			printf("For this game board,\nvalid X coordinates are: 0-%d\nvalid Y coordinates are: A-%c\n", SQUARE, 'A' + SQUARE - 1);
+		}
+*/
+
+/*		else if(( coord[0] > ('A' + SQUARE) && coord[0] < 'A') || (coord[0] > ('a' + SQUARE) && coord[0] < 'a'))
+			printf("%s", badCoord);*/
+
+
+	}
+}
+
+/*
+Function: assign
+Parameters: 2D array of characters representing sections of "ship"
+Return: a integer to let the calling environment know if this function ran correctly.
+*/
+
+int assign(char *board[SQUARE])
+{
+	int i, k, l;
+	k = LARGE;			/*This is here so that I can manipulate the size of the ships.*/
+
+	for( i = 0; i < SHIPS; i++)
+	{
+		l = ship(k, board, i); /*If this function returns a 0, the assign() is set to end prematurely.*/
+		if( l == 0)
+			return 1;
+		k--;
+		if( k < SMALL)
+			k = SMALL;
+	}
+
+	return 0;
+}
+/*
+Function: ship
+Paramenters: int asking for a specific size for this ship.
+2D array of chars representing the battleship board.
+int letting THIS function know how many ships have been made already...this helps randomization.
+Return: int letting the calling environment know if the function ran correctly.
+*/
+int ship(int k, char *board[SQUARE], int lap)
+{
+				/*in the header, k is for the elngth of the battleship*/
+				/*in the header, lap is the number of times this function has run.*/
+	int j;			/*j is for the orientation of the ship*/
+	int h;			/*h is for the static number in the coordinate*/
+	int l;			/*l is a for loop counter*/
+	int ok = 1;		/*ok helps to program check if a ship will be placed correctly before it places it*/
+	int i;			/*i is for the long side of the battle ship.*/
+	int kill;		/*if kill is set to 1, the ship currently being placed will be erased.*/
+	while(ok)
+	{
+		kill = 0;
+		srand(time(NULL)+lap);		/*The "+lap" helps to keep randomization more random.*/
+		j = (rand() % 2 );		/*Horizontal or vertical*/
+		h = (rand() % SQUARE);		/*This number is for the row OR column that the ship ISN"T facing.*/
+		i = (rand() % (SQUARE - k));    /*By directly changing the modulo to pick among only coordinates that will fit the ship, I have decreased the risk of failure considerably.*/
+
+		if((i + k) >= SQUARE)		/*This line checks to see if a ship fell off the map. It is old code since I have changed the random Modulo. (See previous comment)*/
+			return 0;
+		;
+		if(j == 0)			/*This if/else statement reads the number for j and will orient (vertical Horizontal) the ship based on j.*/
+		{
+			for(l = 0; l < k; l++)
+			{
+				if(board[i+l][h] == ' ')	/*This checks to see if a ship is already occupying the space.*/
+					board[i+l][h] = ('A' + lap);
+				else
+				{
+					kill = 1;
+					break;
+				}
+			}
+			if(kill)
+			{
+				while( l > 0 )			/*This block is very important. It will undo the last ship if a fault was found.*/
+				{
+					l--;
+					board[i+l][h] = ' ';
+				}
+			}
+		}
+		else
+		{
+			for(l = 0; l < k; l++)
+			{
+				if(board[h][i+l] == ' ')
+					board[h][i+l] = ('A' + lap);
+				else
+				{
+					kill = 1;
+					break;
+				}
+			}
+			if(kill)
+			{
+				while( l > 0 )			/*This block is very important. It will undo the last ship if a fault was found.*/
+				{
+					l--;
+					board[h][i+l] = ' ';
+				}
+			}
+		}
+		if(l == k)		/*Because l is the incremental counter for ship placement, I can use it to check if the ship was placed by comparing it to the size the call environment sent.*/
+			ok = 0;
+	}
+}
+
+/*
+Function: prn_intro
+Parameters: int letting the function know that a difficulty has not been selected yet.
+In the future, i think this will help any kind of "play again?" feature.
+Return: the number of turns allowed by a particular difficulty setting.
+*/
+int prn_intro(int level)
+{
+	int i;
+	char easy[] = "easy", medium[] = "normal", hard[] = "hard";
+	char c, difficultString[20];
+	printf("----------------------------------------------------------\n");
+	printf("-         Welcome to Zombie Battleship!                  -\n");
+	printf("-      There are ZOMBIES on these battleships!           -\n");
+	printf("-                                                        -\n");
+	printf("-             Game By: Kellen Mills                      -\n");
+	printf("-          UNT CSCE1030.001 Mark Thompson                -\n");
+	printf("----------------------------------------------------------\n");
+	while(level == 0)
+	{
+		printf("\nPlease enter a difficulty setting (easy, normal, hard): ");
+		for( i = 0; (c = getchar()) != '\n'; i++)
+		{
+			difficultString[i] = c;
+		}
+		difficultString[i] = '\0';
+		if( strcmp(difficultString, easy) == 0)
+		{
+			level = EASY;
+		}
+		else if( strcmp(difficultString, medium) == 0)
+		{
+			level = MEDIUM;
+		}
+		else if( strcmp(difficultString, hard) == 0)
+		{
+			level = HARD;
+		}
+		else
+			printf("\nI didn't quite catch that, could you type more clearly?");
+	}
+	printf("%s\n", difficultString);
+	printf("----------------------------------------------------------\n");
+	printf("-  The board will be %d x %d. you will have %d chances   -\n",SQUARE,SQUARE, level);
+	printf("-  to sink the enemy ships. Remember, these are zombies  -\n");
+	printf("-  so try to imagine that the entire time. It'll be fun! -\n");
+	printf("-  The zombies have %02d total ships. The largest ship will-\n", SHIPS);
+	printf("-  be %02d units long. The second largest will be %02d long. -\n", LARGE, LARGE - 1);
+	printf("-  The ships will dercrement in size until they are %02d   -\n", SMALL);
+	printf("-  long. The computer will now randomly generate a board.-\n");
+	printf("----------------------------------------------------------\n");
+
+	return level;
+}
+/*
+Function: prn_info
+Parameters: N/A
+Parameters: N/A
+This is printing my info for the class
+*/
+void prn_info()
+{
+	printf("\nCSCE1030.001\nHW6\nMichael Kellen Mills\nMKM0222\nmichaelmills5@my.unt.edu\n");
+}
+
+/*
+Function: prn_board
+Parameters: 2D char array representing the game board.
+Return: nothing,
+*/
+void prn_board(char *board[SQUARE])
+{
+	int j;			/*j is for columns*/
+	int i;			/*i is rows.*/
+
+	/*The formatting was a bit confusing. But after some counting I figured it out.
+	This is dynamic for larger board sizes.
+	But the numbers won't allign unless you change the first prntf conversion to "%02d" and change both for loops which print "--" per loop instead print "---" per loop.*/
+	printf("\n    ");
+	for( i = 0; i < SQUARE; i++)
+		printf("%d ", i+1);
+	printf("\n");
+	printf("   ");
+	for( i = -1; i < SQUARE; i++)
+		printf("--");
+	printf("\n");
+	for( i = 0; i < SQUARE; i++)
+	{
+	printf("%c | ", 'A'+i);
+		for( j = 0; j < SQUARE; j++)
+		{
+			printf("%c ", board[i][j]);
+		}
+	printf("|\n");
+	}
+	printf("   ");
+	for( i = -1; i < SQUARE; i++)
+		printf("--");
+	printf("\n");
+}

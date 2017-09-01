@@ -1,0 +1,14 @@
+;M Kellen Mills 	michaelmills5@my.unt.edu
+;symbolic processing with Dr. Swigger
+
+(defun initialize ()
+	(setf albert (make-person 'albert 'union '(money1))))
+
+(defun make-person (name location money)
+	(lambda (message)
+	      (cond ((equal message 'name) name)
+		        ((equal message 'location) location)
+                        ((equal message 'money) money))))
+
+(defun send (object message args)
+	(funcall (ask object message) args))

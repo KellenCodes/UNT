@@ -1,0 +1,4 @@
+(defun my-subtract (x)
+(sqrt (- x 2)))
+(defun my-second (x)
+(+ (my-subtract x) 25))

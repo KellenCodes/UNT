@@ -1,0 +1,52 @@
+;; Dribble of #<IO TERMINAL-STREAM> started on 2016-09-06 09:24:29.
+#<OUTPUT BUFFERED FILE-STREAM CHARACTER #P"lab2">
+[4]> (first '(a b c))
+A
+[5]> (first '((a) b c))
+(A)
+[6]> (first 'a)
+
+*** - FIRST: A is not a list
+The following restarts are available:
+ABORT          :R1      Abort main loop
+Break 1 [7]> ;;; hmm, you sabotaged me.
+(first '())
+NIL
+Break 1 [7]> (rest '(a b c))
+(B C)
+Break 1 [7]> (rest '((a) b c))
+(B C)
+Break 1 [7]> (rest (rest '(a b c)))
+(C)
+Break 1 [7]> (rest (first '((a) b c)))
+NIL
+Break 1 [7]> (first (rest '((a) b c)))
+B
+Break 1 [7]> (rest 'a)
+
+*** - REST: A is not a list
+The following restarts are available:
+ABORT          :R1      Abort debug loop
+ABORT          :R2      Abort main loop
+Break 2 [8]> (rest '())
+NIL
+Break 2 [8]> (first '(all x (if (human x) (mortal x))))
+ALL
+Break 2 [8]> (first (rest (rest (rest '(all x (if (human x) (mortal x)))))))
+NIL
+Break 2 [8]> (rest '(all x (if (human x) (mortal x))))
+(X (IF (HUMAN X) (MORTAL X)))
+Break 2 [8]> (rest (rest '(all x (if (human x) (mortal x)))))
+((IF (HUMAN X) (MORTAL X)))
+Break 2 [8]> (rest (rest (rest '(all x (if (human x) (mortal x))))))
+NIL
+Break 2 [8]> (first (rest (rest '(all x (if (human x) (mortal x))))))
+(IF (HUMAN X) (MORTAL X))
+Break 2 [8]> (rest (first (rest (rest '(all x (if (human x) (mortal x)))))))
+((HUMAN X) (MORTAL X))
+Break 2 [8]> (first (rest (first (rest (rest '(all x (if (human x) (mortal x))))))))
+(HUMAN X)
+Break 2 [8]> (first (first (rest (first (rest (rest '(all x (if (human x) (mortal x)))))))))
+HUMAN
+Break 2 [8]> (exit)
+Bye.
